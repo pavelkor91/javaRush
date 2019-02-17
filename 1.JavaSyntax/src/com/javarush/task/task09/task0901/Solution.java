@@ -33,7 +33,7 @@ public class Solution {
     }
 
     public static StackTraceElement[] method5() {
-        //напишите тут ваш код
+        //напишите тут ваш код j
         return Thread.currentThread().getStackTrace();
     }
 }
