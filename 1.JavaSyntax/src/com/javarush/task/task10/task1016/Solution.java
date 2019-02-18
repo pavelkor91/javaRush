@@ -30,6 +30,7 @@ public class Solution {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
 
         //напишите тут ваш код
+        //ds
 
 
         return result;
