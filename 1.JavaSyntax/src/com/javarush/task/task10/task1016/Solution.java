@@ -29,8 +29,14 @@ public class Solution {
     public static Map<String, Integer> countWords(ArrayList<String> list) {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
 
-        //напишите тут ваш код
-        //ds
+        for(String s: list){
+            if(result.containsKey(s)){
+                result.put(s,result.get(s)+ 1);
+            }
+            else {
+                result.put(s, 1);
+            }
+        }
 
 
         return result;
