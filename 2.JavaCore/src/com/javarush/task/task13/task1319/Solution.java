@@ -1,15 +1,14 @@
-package com.javarush.task.task13.task1318;
+package com.javarush.task.task13.task1319;
 
 import java.io.*;
-import java.util.Scanner;
 
 /* 
-Чтение файла
+Писатель в файл с консоли
 */
 
 public class Solution {
     public static void main(String[] args) throws IOException{
-        // напишите тут ваш код
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String path = null;
         try {
@@ -19,14 +18,19 @@ public class Solution {
             System.out.printf("IO Error");
         }
 
-        InputStream  inputStreamReader = new FileInputStream(path);
+        BufferedWriter outputStream = new BufferedWriter(new FileWriter(path));
 
 
-        while (inputStreamReader.available() > 0){
+        String txt = "";
+        do{
+            txt = bufferedReader.readLine();
+            outputStream.write(txt + "\n");
 
-            System.out.print((char)inputStreamReader.read());
         }
+        while (!txt.equals("exit"));
         bufferedReader.close();
-        inputStreamReader.close();
+        outputStream.close();
+
+
     }
 }

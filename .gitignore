@@ -13,6 +13,7 @@ target/
 
 
 /out/
+/resources/
 /Instruction.png
 /out.log
 /out.log.*
