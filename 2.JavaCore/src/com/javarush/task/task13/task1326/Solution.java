@@ -7,9 +7,7 @@ package com.javarush.task.task13.task1326;
 
 import javax.swing.tree.TreeNode;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) throws IOException{
@@ -24,20 +22,19 @@ public class Solution {
         }
 
         BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+        Scanner scanner = new Scanner(bufferedReader1);
+        ArrayList<Integer> arrayList= new ArrayList<>();
 
-        TreeSet<Integer> treeSet = new TreeSet<>();
-
-        do{
-            Integer tmp = Integer.parseInt(bufferedReader1.readLine());
-            if (tmp != null) {
-                if (tmp % 2 == 0) {
-                    treeSet.add(tmp);
-                }
-            }
-            else
-                break;
-        }
-        while(true);
+       while (scanner.hasNextLine()){
+           int tmp = Integer.parseInt(scanner.nextLine());
+           if (tmp % 2 == 0){
+               arrayList.add(tmp);
+           }
+       }
+       Collections.sort(arrayList);
+       for(Integer i: arrayList){
+           System.out.println(i);
+       }
 
         bufferedReader.close();
         bufferedReader1.close();
