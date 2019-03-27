@@ -18,36 +18,40 @@ public class Solution {
         }
         catch (IOException e){}
 
-        byte[] firstFile = readFile(file1);
-        byte[] secondFile = readFile(file2);
-        byte[] fullBuffer = new byte[firstFile.length + secondFile.length];
-        System.arraycopy(secondFile, 0, fullBuffer, 0, secondFile.length);
-        System.arraycopy(firstFile, 0, fullBuffer, firstFile.length, secondFile.length);
-
-        writeFile(file1, fullBuffer);
-
-    }
-
-    public static byte[] readFile(String filePath){
-        byte[] buffer = null;
+        byte[] firstFile = null;
         try {
-            FileInputStream fileReader = new FileInputStream(filePath);
-            buffer = new byte[fileReader.available()];
-            fileReader.read(buffer);
+            FileInputStream fileReader = new FileInputStream(file1);
+            firstFile = new byte[fileReader.available()];
+            fileReader.read(firstFile);
             fileReader.close();
+
         }
         catch (FileNotFoundException e){}
         catch (IOException e){}
-        return buffer;
-    }
 
-    public static void writeFile(String filePath, byte[] buffer){
+        byte[] secondFile = null;
         try {
-            FileOutputStream fileWriter = new FileOutputStream(filePath);
-            fileWriter.write(buffer);
+            FileInputStream fileReader = new FileInputStream(file2);
+            secondFile = new byte[fileReader.available()];
+            fileReader.read(secondFile);
+            fileReader.close();
+
+        }
+        catch (FileNotFoundException e){}
+        catch (IOException e){}
+
+        //byte[] fullBuffer = new byte[firstFile.length + secondFile.length];
+       // System.arraycopy(secondFile, 0, fullBuffer, 0, secondFile.length);
+       // System.arraycopy(firstFile, 0, fullBuffer, firstFile.length, secondFile.length);
+
+        try {
+            FileOutputStream fileWriter = new FileOutputStream(file1);
+            fileWriter.write(secondFile);
+            fileWriter.write(firstFile);
             fileWriter.close();
         }
         catch (FileNotFoundException e){}
         catch (IOException e){}
+
     }
 }
