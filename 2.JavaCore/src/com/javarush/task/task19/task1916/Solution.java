@@ -43,23 +43,33 @@ public class Solution {
         catch (FileNotFoundException e){}
         catch (IOException e){}
 
-        while (!firstFileStrings.isEmpty() || !secondFileStrings.isEmpty()){
-            if(!firstFileStrings.isEmpty() && firstFileStrings.get(0).equals(secondFileStrings.get(0))){
-                lines.add(new LineItem(Type.SAME, firstFileStrings.get(0)));
-                firstFileStrings.remove(0);
-                firstFileStrings.remove(0);
-            }
-            else if(!firstFileStrings.isEmpty() && firstFileStrings.get(1).equals(secondFileStrings.get(0))){
-                lines.add(new LineItem(Type.REMOVED, firstFileStrings.get(0)));
-                firstFileStrings.remove(0);
-            }
-            else if(!firstFileStrings.isEmpty() && firstFileStrings.get(0).equals(secondFileStrings.get(1))){
-                lines.add(new LineItem(Type.ADDED, secondFileStrings.get(0)));
-                secondFileStrings.remove(0);
-            }
-        }
 
-        for(LineItem item: lines){
+       while (!firstFileStrings.isEmpty() && !secondFileStrings.isEmpty()){
+           if(firstFileStrings.get(0).equals(secondFileStrings.get(0))){
+               lines.add(new LineItem(Type.SAME, firstFileStrings.get(0)));
+               firstFileStrings.remove(0);
+               secondFileStrings.remove(0);
+           }
+           else if(firstFileStrings.get(0).equals(secondFileStrings.get(1))){
+               lines.add(new LineItem(Type.ADDED, secondFileStrings.get(0)));
+               secondFileStrings.remove(0);
+           }
+           else if(!firstFileStrings.get(0).equals(secondFileStrings.get(1))){
+               lines.add(new LineItem(Type.REMOVED, firstFileStrings.get(0)));
+               firstFileStrings.remove(0);
+           }
+       }
+
+       if(!firstFileStrings.isEmpty()){
+           for(String s: firstFileStrings)
+            lines.add(new LineItem(Type.REMOVED, s));
+       }
+       if(!secondFileStrings.isEmpty()){
+           for(String s: secondFileStrings)
+               lines.add(new LineItem(Type.ADDED, s));
+       }
+
+        /*for(LineItem item: lines){
             StringBuilder sb = new StringBuilder();
             sb.append(item.line);
             sb.append(" ");
@@ -69,7 +79,7 @@ public class Solution {
                 case REMOVED:sb.append("REMOVED"); break;
             }
             System.out.println(sb.toString());
-        }
+        }*/
 
 
 
