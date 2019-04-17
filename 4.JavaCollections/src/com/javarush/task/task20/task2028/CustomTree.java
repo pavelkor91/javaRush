@@ -9,6 +9,27 @@ import java.util.List;
 Построй дерево(1)
 */
 public class CustomTree extends AbstractList<String> implements Cloneable, Serializable {
+    static class Entry<T> implements Serializable{
+
+        String elementName;
+        boolean availableToAddLeftChildren;
+        boolean availableToAddRightChildren;
+        Entry<T> parent;
+        Entry<T> leftChild;
+        Entry<T> rightChild;
+        public Entry(String elementName){
+            this.elementName = elementName;
+            this.availableToAddLeftChildren = true;
+            this.availableToAddRightChildren = true;
+        }
+
+        public boolean isAvailableToAddChildren(){
+           if(availableToAddRightChildren == false && availableToAddLeftChildren == false)
+               return false;
+           else
+               return true;
+        }
+    }
     @Override
     public String get(int index) {
         throw new UnsupportedOperationException();
