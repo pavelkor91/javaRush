@@ -1,6 +1,8 @@
 package com.javarush.task.task21.task2108;
 
-/* 
+import java.util.Arrays;
+
+/*
 Клонирование растений
 */
 public class Solution {
@@ -32,12 +34,19 @@ public class Solution {
         }
     }
 
-    public static class Tree extends Plant {
+    public static class Tree extends Plant implements Cloneable {
         private String[] branches;
 
         public Tree(String name, String[] branches) {
             super(name);
             this.branches = branches;
+        }
+
+        @Override
+        protected Tree clone() throws CloneNotSupportedException {
+            Tree newTree = new Tree(this.getName(), null);
+            newTree.branches = Arrays.copyOf(this.branches, this.branches.length);
+            return newTree;
         }
 
         public String[] getBranches() {

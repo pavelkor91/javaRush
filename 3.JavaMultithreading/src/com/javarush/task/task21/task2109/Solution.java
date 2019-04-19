@@ -30,14 +30,25 @@ public class Solution {
             this.name = name;
         }
 
+        @Override
+        protected B clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException();
+        }
+
         public String getName() {
             return name;
         }
     }
 
-    public static class C extends B {
+    public static class C extends B implements Cloneable{
         public C(int i, int j, String name) {
             super(i, j, name);
+        }
+
+        @Override
+        protected C clone() throws CloneNotSupportedException {
+            C newC = new C(this.getI(), this.getJ(), this.getName());
+            return newC;
         }
     }
 
