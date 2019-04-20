@@ -10,7 +10,19 @@ public class Horse {
         this.speed = speed;
         this.distance = distance;
     }
+    public void move(){
+            distance += speed * Math.random();
+    }
 
+    public void print(){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < Math.floor(distance); i++){
+            sb.append(".");
+        }
+        sb.append(name);
+        System.out.println(sb.toString());
+
+    }
     public String getName() {
         return name;
     }
