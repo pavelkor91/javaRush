@@ -1,11 +1,20 @@
 package com.javarush.task.task24.task2413;
 
-import java.util.Map;
-
+/**
+ * Базовый класс для всех объектов игры.
+ */
 public abstract class BaseObject {
-    private double x;
-    private double y;
-    private double radius;
+    //координаты
+    protected double x;
+    protected double y;
+    //радиус объекта
+    protected double radius;
+
+    protected BaseObject(double x, double y, double radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
 
     public double getX() {
         return x;
@@ -31,22 +40,34 @@ public abstract class BaseObject {
         this.radius = radius;
     }
 
-    public BaseObject(double x, double y, double radius) {
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
+    /**
+     * Метод рисует свой объект на "канвасе".
+     */
+    abstract void draw(Canvas canvas);
+
+    /**
+     * Двигаем себя на один ход.
+     */
+    abstract void move();
+
+    /**
+     * Проверяем - не выходит ли (x,y) за границы.
+     */
+    void checkBorders(double minx, double maxx, double miny, double maxy) {
+        if (x < minx) x = minx;
+        if (x > maxx) x = maxx;
+        if (y < miny) y = miny;
+        if (y > maxy) y = maxy;
     }
 
-    public abstract void draw(Canvas canvas);
-    public abstract void move();
-
-    public boolean isIntersec(BaseObject o){
-        double distance = Math.sqrt(Math.pow((o.getX() - this.getX()), 2F) + Math.pow((o.getY() - this.getY()), 2F));
-        double max = o.getRadius() > this.getRadius() ? o.getRadius() : this.getRadius();
-
-        return distance <= max;
+    /**
+     * Проверяем - пересекаются ли переданный(o) и наш(this) объекты.
+     */
+    boolean isIntersec(BaseObject o) {
+        double dx = x - o.x;
+        double dy = y - o.y;
+        double destination = Math.sqrt(dx * dx + dy * dy);
+        double destination2 = Math.max(radius, o.radius);
+        return destination <= destination2;
     }
-
-
-
 }
