@@ -50,6 +50,23 @@ public class Server {
                     ConsoleHelper.writeMessage("Ошибка - не текст.");
             }
         }
+
+        @Override
+        public void run() {
+            System.out.println("Соединение с " + socket.getRemoteSocketAddress() + " установлено");
+            try {
+                Connection connection = new Connection(socket);
+                String name = serverHandshake(connection);
+                sendBroadcastMessage(new Message(MessageType.USER_ADDED, name));
+                notifyUsers(connection, name);
+                serverMainLoop(connection, name);
+                if (name != null && !name.equals("")) {
+                    connectionMap.remove(name);
+                    sendBroadcastMessage(new Message(MessageType.USER_REMOVED, name));
+                }
+            }
+            catch (IOException | ClassNotFoundException e){}
+        }
     }
 
     public static void sendBroadcastMessage(Message message){
