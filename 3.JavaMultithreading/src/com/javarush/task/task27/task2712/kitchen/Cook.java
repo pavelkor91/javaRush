@@ -1,11 +1,12 @@
 package com.javarush.task.task27.task2712.kitchen;
 
 import com.javarush.task.task27.task2712.ConsoleHelper;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public class Cook implements Observer {
+public class Cook extends Observable implements Observer {
     private final String name;
 
     public Cook(String name) {
@@ -14,7 +15,10 @@ public class Cook implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        ConsoleHelper.writeMessage("Start cooking - "+ arg);
+        Order tmp = (Order) arg;
+        ConsoleHelper.writeMessage("Start cooking - "+ arg + ", cooking time " + tmp.getTotalCookingTime() +"min");
+        setChanged();
+        notifyObservers(arg);
     }
 
     @Override

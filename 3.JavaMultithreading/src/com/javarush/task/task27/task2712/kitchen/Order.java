@@ -16,11 +16,22 @@ public class Order {
         dishes = ConsoleHelper.getAllDishesForOrder();
     }
 
+    public int getTotalCookingTime(){
+        int result = 0;
+        for(Dish dish: dishes){
+            result += dish.getDuration();
+        }
+        return result;
+    }
     @Override
     public String toString() {
         if(dishes.size() == 0){
             return "";
         }
         return "Your order: " + dishes + " of " + tablet;
+    }
+
+    public boolean isEmpty(){
+        return dishes.isEmpty() ? true : false;
     }
 }
