@@ -14,6 +14,7 @@ public class Advertisement {
         this.initialAmount = initialAmount;
         this.hits = hits;
         this.duration = duration;
+        if(hits > 0)
         this.amountPerOneDisplaying = initialAmount / hits;
     }
 
