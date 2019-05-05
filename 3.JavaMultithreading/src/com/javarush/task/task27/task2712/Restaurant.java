@@ -10,7 +10,7 @@ public class Restaurant {
         Waiter waiter = new Waiter();
         tablet1.addObserver(amigo);
         amigo.addObserver(waiter);
-        
+
         tablet1.createOrder();
         DirectorTablet directorTablet = new DirectorTablet();
         directorTablet.printActiveVideoSet();

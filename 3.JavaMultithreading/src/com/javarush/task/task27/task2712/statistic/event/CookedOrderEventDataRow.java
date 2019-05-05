@@ -35,4 +35,8 @@ public class CookedOrderEventDataRow implements EventDataRow{
     {
         return cookingTimeSeconds;
     }
+
+    public String getCookName() {
+        return cookName;
+    }
 }
