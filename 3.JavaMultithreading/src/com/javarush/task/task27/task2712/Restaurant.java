@@ -4,7 +4,7 @@ import com.javarush.task.task27.task2712.kitchen.Cook;
 import com.javarush.task.task27.task2712.kitchen.Waiter;
 
 public class Restaurant {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
         Tablet tablet1 = new Tablet(1);
         Cook amigo = new Cook("Amigo");
         Waiter waiter = new Waiter();
@@ -12,6 +12,10 @@ public class Restaurant {
         amigo.addObserver(waiter);
         
         tablet1.createOrder();
-        
+        DirectorTablet directorTablet = new DirectorTablet();
+        directorTablet.printActiveVideoSet();
+        directorTablet.printAdvertisementProfit();
+        directorTablet.printArchivedVideoSet();
+        directorTablet.printCookWorkloading();
     }
 }

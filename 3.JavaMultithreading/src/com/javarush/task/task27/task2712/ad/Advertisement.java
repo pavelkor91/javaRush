@@ -32,7 +32,7 @@ public class Advertisement {
 
     public void revalidate(){
         if(hits < 1)
-            throw new UnsupportedOperationException();
+            throw new NoVideoAvailableException();
         hits--;
     }
 

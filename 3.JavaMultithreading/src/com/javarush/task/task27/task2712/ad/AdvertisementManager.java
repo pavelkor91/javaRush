@@ -1,6 +1,9 @@
 package com.javarush.task.task27.task2712.ad;
 
 import com.javarush.task.task27.task2712.ConsoleHelper;
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
+import com.javarush.task.task27.task2712.statistic.event.NoAvailableVideoEventDataRow;
+import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,9 +39,8 @@ public class AdvertisementManager {
             ad.revalidate();
             ConsoleHelper.writeMessage(String.format("%s is displaying... %d, %d", ad.getName(),
                     ad.getAmountPerOneDisplaying(), ad.getAmountPerOneDisplaying() * 1000 / ad.getDuration()));
-            totalAmount += ad.getAmountPerOneDisplaying();
-            totalDuration += ad.getDuration();
         }
+        StatisticManager.getInstance().register(new VideoSelectedEventDataRow(bestVariant, totalAmount, totalDuration));
     }
     private List<Advertisement> pickVideosToList(List<Advertisement> previousList, Advertisement previousAd, int remainingTime,
                                                  long profit, List<Advertisement> bestResult) throws NoVideoAvailableException {
@@ -64,7 +66,10 @@ public class AdvertisementManager {
             bestResult = newList;
         } else if (profit == maxProfit && remainingTime == minRemainingTime && bestResult.size() > newList.size())
             bestResult = newList;
-
+        if (bestResult.isEmpty()) {
+            StatisticManager.getInstance().register(new NoAvailableVideoEventDataRow(timeSeconds));
+            throw new NoVideoAvailableException();
+        }
         Collections.sort(bestResult, new Comparator<Advertisement>() {
             @Override
             public int compare(Advertisement o1, Advertisement o2) {
