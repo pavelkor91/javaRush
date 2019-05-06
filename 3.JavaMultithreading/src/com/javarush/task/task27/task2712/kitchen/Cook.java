@@ -3,8 +3,6 @@ package com.javarush.task.task27.task2712.kitchen;
 import com.javarush.task.task27.task2712.ConsoleHelper;
 import com.javarush.task.task27.task2712.statistic.StatisticManager;
 import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow;
-import com.javarush.task.task27.task2712.statistic.event.EventType;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.util.Observable;
 import java.util.Observer;
