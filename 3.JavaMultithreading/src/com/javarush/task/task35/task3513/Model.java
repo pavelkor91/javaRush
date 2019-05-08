@@ -6,8 +6,8 @@ import java.util.List;
 public class Model {
     private static final int FIELD_WIDTH = 4;
     private Tile[][] gameTiles;
-    protected static int score = 0;
-    protected static int maxTile = 0;
+    protected  int score = 0;
+    protected  int maxTile = 0;
 
 
     public Model(){
@@ -46,17 +46,16 @@ public class Model {
         addTile();
     }
 
-    private static void compressTiles(Tile[] tiles){
-       for(int i = 0; i < tiles.length - 1; i++){
-           if(tiles[i].value == 0){
-               for(int j = i; j < tiles.length - 1; j++){
-                   tiles[j].value = tiles[j + 1].value;
-               }
-               tiles[tiles.length - 1].value = 0;
-           }
-       }
+    private  void compressTiles(Tile[] tiles){
+        for (int j = 0; j < tiles.length - 1; j++)
+            for (int i = 0; i < tiles.length - 1; i++) {
+                if (tiles[i].value == 0) {
+                    tiles[i].value = tiles[i + 1].value;
+                    tiles[i + 1].value = 0;
+                }
+            }
     }
-    private static void mergeTiles(Tile[] tiles){
+    private  void mergeTiles(Tile[] tiles){
         for(int i = 0; i < tiles.length - 1; i++){
             if(tiles[i].value == tiles[i + 1].value){
                 tiles[i].value = tiles[i].value * 2;
@@ -75,15 +74,15 @@ public class Model {
             new Tile(0),
             new Tile(0),
             new Tile(4),
-            new Tile(4)
+            new Tile(0)
         };
-        compressTiles(testTiles);
-        //mergeTiles(testTiles);
+       // compressTiles(testTiles);
+       // mergeTiles(testTiles);
         for (Tile tile : testTiles) {
             System.out.println(tile.getValue());
         }
         System.out.println();
-        System.out.println(score);
-        System.out.println(maxTile);
+       // System.out.println(score);
+       // System.out.println(maxTile);
     }
 }
