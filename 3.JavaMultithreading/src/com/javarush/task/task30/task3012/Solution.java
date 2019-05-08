@@ -11,6 +11,43 @@ public class Solution {
     }
 
     public void createExpression(int number) {
-        //напишите тут ваш код
+        int[] array={1, 3, 9, 27, 81, 243, 729, 2187};
+        String s="";
+        int nn=number;
+        while (nn>0)
+        {
+            if (nn%3==0)
+            {
+                s=s+"0";
+                nn/=3;
+            }
+            else if (nn%3==1)
+            {
+                s=s+"+";
+                nn/=3;
+            }
+            else if (nn%3==2)
+            {
+                s=s+"-";
+                nn/=3;
+                nn++;
+            }
+        }
+        int sum=0;
+        String str="";
+        for (int i=0;i<s.length(); i++)
+        {
+            if (s.charAt(i)=='+') {
+                str+=" + "+array[i];
+                sum+=array[i];
+            }
+            else if (s.charAt(i)=='-')
+            {
+                str+=" - "+array[i];
+                sum-=array[i];
+            }
+        }
+        System.out.println(sum+" ="+str);
     }
+
 }
