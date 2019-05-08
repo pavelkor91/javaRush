@@ -21,6 +21,10 @@ public class Tile {
         this.value = value;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public Color getFontColor(){
         return value < 16 ? new Color(0x776e65) : new Color(0xf9f6f2);
     }
