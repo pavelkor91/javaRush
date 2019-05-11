@@ -31,6 +31,9 @@ public class Controller extends KeyAdapter {
                 case KeyEvent.VK_RIGHT : model.right();break;
                 case KeyEvent.VK_UP : model.up();break;
                 case KeyEvent.VK_DOWN : model.down();break;
+                case KeyEvent.VK_Z: model.rollback(); break;
+                case KeyEvent.VK_R: model.randomMove(); break;
+                case KeyEvent.VK_A: model.autoMove(); break;
             }
         }
         if(model.maxTile == WINNING_TILE){view.isGameWon = true;}
