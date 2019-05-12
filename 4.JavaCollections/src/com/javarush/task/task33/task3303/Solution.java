@@ -9,7 +9,7 @@ import java.io.*;
 */
 public class Solution {
     public static <T> T convertFromJsonToNormal(String fileName, Class<T> clazz) throws IOException {
-       T result = null;
+        T result = null;
         ObjectMapper mapper = new ObjectMapper();
         StringReader stringReader;
 
