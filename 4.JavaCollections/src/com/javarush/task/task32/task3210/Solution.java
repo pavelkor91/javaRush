@@ -23,6 +23,5 @@ public class Solution {
            raf.write("false".getBytes());
        }
        raf.close();
-
     }
 }
